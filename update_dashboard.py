@@ -353,7 +353,7 @@ class DashboardGenerator:
         height = width
         
         # Create a static map
-        m = StaticMap(width, height, tile_provider='https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png')
+        m = StaticMap(width, height, url_template='https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png')
         
         # Create the track line
         line = Line(poly, STRAVA_ORANGE, 3)
