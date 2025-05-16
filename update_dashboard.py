@@ -348,26 +348,9 @@ class DashboardGenerator:
         # Decode the polyline
         poly = polyline.decode(race['map']['polyline'])
         
-        # Calculate bounds
-        lats = [p[0] for p in poly]
-        lons = [p[1] for p in poly]
-        
-        min_lat, max_lat = min(lats), max(lats)
-        min_lon, max_lon = min(lons), max(lons)
-        
-        # Add some padding
-        lat_padding = (max_lat - min_lat) * 0.1
-        lon_padding = (max_lon - min_lon) * 0.1
-        
-        min_lat -= lat_padding
-        max_lat += lat_padding
-        min_lon -= lon_padding
-        max_lon += lon_padding
-        
         # Calculate width and height (in pixels) to maintain aspect ratio
         width = 800
-        aspect_ratio = (max_lon - min_lon) / (max_lat - min_lat)
-        height = int(width / aspect_ratio) if aspect_ratio > 1 else int(width * (1/aspect_ratio))
+        height = width
         
         # Create a static map
         m = StaticMap(width, height)
