@@ -140,7 +140,7 @@ class StravaClient:
         weekly_data = {}
         for activity in running_activities:
             start_date = parser.parse(activity['start_date'])
-            week_start = (start_date - datetime.timedelta(days=start_date.weekday())).strftime('%Y-%m-%d')
+            week_start = (start_date - datetime.timedelta(days=start_date.weekday())).strftime('%B %d, %Y')
             
             if week_start not in weekly_data:
                 weekly_data[week_start] = {
@@ -245,7 +245,7 @@ class StravaClient:
                     'distance': distance_name,
                     'time': self._format_time(record['time']),
                     'pace': self._calculate_pace(record['time'], activity['distance']),
-                    'date': parser.parse(activity['start_date_local']).strftime('%Y-%m-%d'),
+                    'date': parser.parse(activity['start_date_local']).strftime('%B %d, %Y'),
                 })
         
         return formatted_records
@@ -353,7 +353,7 @@ class DashboardGenerator:
         height = width
         
         # Create a static map
-        m = StaticMap(width, height)
+        m = StaticMap(width, height, tile_provider='https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png')
         
         # Create the track line
         line = Line(poly, STRAVA_ORANGE, 3)
@@ -428,7 +428,7 @@ class DashboardGenerator:
                 
                 for activity in activities:
                     if activity['type'] == 'Run':
-                        date = parser.parse(activity['start_date_local']).strftime('%Y-%m-%d')
+                        date = parser.parse(activity['start_date_local']).strftime('%B %d, %Y')
                         distance = f"{activity['distance'] / 1609.34:.2f} mi"
                         time = self.strava_client._format_time(activity['moving_time'])
                         pace = self.strava_client._calculate_pace(activity['moving_time'], activity['distance'])
@@ -447,12 +447,12 @@ class DashboardGenerator:
             # Update latest race
             if latest_race and race_map_path:
                 relative_path = race_map_path.relative_to(Path.cwd())
-                race_date = parser.parse(latest_race['start_date_local']).strftime('%Y-%m-%d')
+                race_date = parser.parse(latest_race['start_date_local']).strftime('%B %d, %Y')
                 race_distance = f"{latest_race['distance'] / 1609.34:.2f} mi"
                 race_time = self.strava_client._format_time(latest_race['moving_time'])
                 race_pace = self.strava_client._calculate_pace(latest_race['moving_time'], latest_race['distance'])
                 
-                race_md = f"![My Latest Race Map](/{relative_path})\n\n"
+                race_md = f'<img align="left" width="100" height="100" src="/{relative_path}">\n\n'
                 race_md += f"**Race**: {latest_race['name']}  \n"
                 race_md += f"**Date**: {race_date}  \n"
                 race_md += f"**Distance**: {race_distance}  \n"
@@ -495,7 +495,7 @@ class DashboardGenerator:
                 readme_content = updated_content
             
             # Update last updated timestamp
-            now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')
+            now = datetime.datetime.now().strftime('%B %d, %Y %H:%M:%S UTC')
             updated_content = re.sub(
                 r'{{LAST_UPDATED}}',
                 now,
