@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-GitHub README Dashboard Updater for Strava and Sleep Data
-Updates the README with running stats and sleep data from Strava and Garmin Connect
+GitHub README Dashboard Updater for Strava
+Updates the README with running stats from Strava
 """
 
 import os
@@ -32,12 +32,11 @@ logger = logging.getLogger(__name__)
 
 # Configuration
 STRAVA_API_URL = "https://www.strava.com/api/v3"
-GARMIN_API_URL = "https://connect.garmin.com/modern/proxy/usersummary-service/usersummary"
 STRAVA_ORANGE = "#FC4C02"
 BACKGROUND_COLOR = "#0D1117"  # GitHub dark mode background
 TEXT_COLOR = "#E6EDF3"  # GitHub dark mode text
 SECONDARY_COLOR = "#58a6ff"  # GitHub accent blue
-IMAGES_DIR = Path("images")
+IMAGES_DIR = Path.cwd() / "images"
 
 # Ensure images directory exists
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
@@ -291,142 +290,9 @@ class StravaClient:
             return "Unknown location"
 
 
-class GarminClient:
-    def __init__(self):
-        self.username = os.environ.get("GARMIN_USERNAME")
-        self.password = os.environ.get("GARMIN_PASSWORD")
-        self.session = requests.Session()
-        self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        }
-        
-    def login(self):
-        """Log in to Garmin Connect"""
-        auth_url = "https://sso.garmin.com/sso/signin"
-        
-        # First request to get CSRF token
-        params = {
-            'service': 'https://connect.garmin.com/modern',
-            'webhost': 'https://connect.garmin.com',
-            'source': 'https://connect.garmin.com/en-US/signin',
-            'redirectAfterAccountLoginUrl': 'https://connect.garmin.com/modern',
-            'redirectAfterAccountCreationUrl': 'https://connect.garmin.com/modern',
-            'gauthHost': 'https://sso.garmin.com/sso',
-            'locale': 'en_US',
-            'id': 'gauth-widget',
-            'cssUrl': 'https://static.garmincdn.com/com.garmin.connect/ui/css/gauth-custom-v1.2-min.css',
-            'clientId': 'GarminConnect',
-            'rememberMeShown': 'true',
-            'rememberMeChecked': 'false',
-            'createAccountShown': 'true',
-            'openCreateAccount': 'false',
-            'displayNameShown': 'false',
-            'consumeServiceTicket': 'false',
-            'initialFocus': 'true',
-            'embedWidget': 'false',
-            'generateExtraServiceTicket': 'true',
-            'generateTwoExtraServiceTickets': 'false',
-            'generateNoServiceTicket': 'false',
-            'globalOptInShown': 'true',
-            'globalOptInChecked': 'false',
-            'mobile': 'false',
-            'connectLegalTerms': 'true',
-            'locationPromptShown': 'true',
-            'showPassword': 'true'
-        }
-        
-        try:
-            response = self.session.get(auth_url, params=params, headers=self.headers)
-            response.raise_for_status()
-            
-            # Extract CSRF token
-            csrf = None
-            match = re.search(r'name="_csrf"\s+value="(\w+)"', response.text)
-            if match:
-                csrf = match.group(1)
-            else:
-                logger.error("Could not find CSRF token")
-                return False
-                
-            # Login with username and password
-            data = {
-                'username': self.username,
-                'password': self.password,
-                'embed': 'false',
-                '_csrf': csrf
-            }
-            
-            response = self.session.post(auth_url, params=params, data=data, headers=self.headers, allow_redirects=False)
-            
-            if response.status_code != 302:
-                logger.error("Login failed - no redirect received")
-                return False
-                
-            # Follow redirects manually to get tickets
-            redirect_url = response.headers.get('Location')
-            response = self.session.get(redirect_url, headers=self.headers, allow_redirects=False)
-            
-            # Continue following redirects as needed
-            while response.status_code == 302:
-                redirect_url = response.headers.get('Location')
-                response = self.session.get(redirect_url, headers=self.headers, allow_redirects=False)
-            
-            if 'SESSIONID' in self.session.cookies.get_dict():
-                logger.info("Garmin login successful")
-                return True
-            else:
-                logger.error("Garmin login failed - no session cookie")
-                return False
-                
-        except requests.exceptions.RequestException as e:
-            logger.error(f"Error during Garmin login: {e}")
-            return False
-
-    def get_sleep_data(self, days=14):
-        """Get sleep data for the last X days"""
-        if not self.login():
-            return []
-            
-        sleep_data = []
-        end_date = datetime.datetime.now()
-        start_date = end_date - datetime.timedelta(days=days)
-        
-        # Format dates for API
-        start_date_str = start_date.strftime('%Y-%m-%d')
-        end_date_str = end_date.strftime('%Y-%m-%d')
-        
-        url = f"{GARMIN_API_URL}/sleep/daily/{start_date_str}/{end_date_str}"
-        
-        try:
-            response = self.session.get(url, headers=self.headers)
-            response.raise_for_status()
-            data = response.json()
-            
-            for day in data:
-                if day.get('sleepScores') and day.get('dailySleepDTO'):
-                    overall_score = day['sleepScores'].get('overall', {}).get('value', 0)
-                    sleep_seconds = day['dailySleepDTO'].get('sleepTimeSeconds', 0)
-                    sleep_hours = sleep_seconds / 3600
-                    
-                    sleep_data.append({
-                        'date': day['dailySleepDTO']['calendarDate'],
-                        'score': overall_score,
-                        'duration': sleep_hours
-                    })
-            
-            # Sort by date
-            sleep_data.sort(key=lambda x: x['date'])
-            return sleep_data
-            
-        except requests.exceptions.RequestException as e:
-            logger.error(f"Error getting sleep data: {e}")
-            return []
-
-
 class DashboardGenerator:
-    def __init__(self, strava_client, garmin_client):
+    def __init__(self, strava_client):
         self.strava_client = strava_client
-        self.garmin_client = garmin_client
         plt.style.use('dark_background')
         plt.rcParams.update({
             'text.color': TEXT_COLOR,
@@ -482,61 +348,6 @@ class DashboardGenerator:
         
         # Save the chart to buffer
         img_path = IMAGES_DIR / "weekly_distance.svg"
-        plt.savefig(img_path, format='svg', transparent=False)
-        plt.close()
-        
-        return img_path
-
-    def generate_sleep_chart(self):
-        """Generate sleep score chart"""
-        sleep_data = self.garmin_client.get_sleep_data()
-        
-        if not sleep_data:
-            logger.warning("No sleep data available for chart")
-            return None
-            
-        # Prepare data for plotting
-        dates = [parser.parse(data['date']) for data in sleep_data]
-        scores = [data['score'] for data in sleep_data]
-        durations = [data['duration'] for data in sleep_data]
-        
-        # Create figure with two y-axes
-        fig, ax1 = plt.subplots(figsize=(10, 5))
-        ax2 = ax1.twinx()
-        
-        # Plot sleep score as line
-        line1 = ax1.plot(dates, scores, 'o-', color=STRAVA_ORANGE, linewidth=2, label='Sleep Score')
-        ax1.set_ylim(0, 100)
-        ax1.set_ylabel('Sleep Score', color=STRAVA_ORANGE)
-        ax1.tick_params(axis='y', colors=STRAVA_ORANGE)
-        
-        # Plot sleep duration as bars
-        bars = ax2.bar(dates, durations, alpha=0.3, color=SECONDARY_COLOR, label='Sleep Duration')
-        ax2.set_ylabel('Hours', color=SECONDARY_COLOR)
-        ax2.tick_params(axis='y', colors=SECONDARY_COLOR)
-        
-        # Configure the plot
-        ax1.set_title('Sleep Quality Trend', fontsize=16, pad=20)
-        ax1.set_xlabel('Date', fontsize=12)
-        
-        # Format x-axis to show dates nicely
-        ax1.xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
-        ax1.xaxis.set_major_locator(mdates.DayLocator(interval=2))
-        plt.xticks(rotation=45)
-        
-        # Add grid for readability
-        ax1.grid(True, linestyle='--', alpha=0.3)
-        
-        # Add legend
-        lines, labels = ax1.get_legend_handles_labels()
-        lines2, labels2 = ax2.get_legend_handles_labels()
-        ax1.legend(lines + lines2, labels + labels2, loc='upper left')
-        
-        # Ensure padding
-        plt.tight_layout()
-        
-        # Save the chart to buffer
-        img_path = IMAGES_DIR / "sleep_score.svg"
         plt.savefig(img_path, format='svg', transparent=False)
         plt.close()
         
@@ -612,7 +423,6 @@ class DashboardGenerator:
             # Get data
             activities = self.strava_client.get_activities(5)
             weekly_chart_path = self.generate_weekly_chart()
-            sleep_chart_path = self.generate_sleep_chart()
             ytd_stats = self.strava_client.get_ytd_stats()
             personal_records = self.strava_client.get_personal_records()
             
@@ -621,9 +431,6 @@ class DashboardGenerator:
             race_map_path = None
             if latest_race:
                 race_map_path = self.generate_race_map(latest_race)
-            
-            # Get sleep data
-            sleep_data = self.garmin_client.get_sleep_data()
             
             # Read existing README
             with open('README.md', 'r') as f:
@@ -705,36 +512,6 @@ class DashboardGenerator:
                 )
                 readme_content = updated_content
             
-            # Update sleep stats
-            if sleep_data and sleep_chart_path:
-                relative_path = sleep_chart_path.relative_to(Path.cwd())
-                
-                # Calculate last night's sleep and weekly average
-                last_night = sleep_data[-1] if sleep_data else None
-                weekly_data = sleep_data[-7:] if len(sleep_data) >= 7 else sleep_data
-                
-                weekly_avg_duration = sum(day['duration'] for day in weekly_data) / len(weekly_data)
-                weekly_avg_score = sum(day['score'] for day in weekly_data) / len(weekly_data)
-                
-                sleep_md = f"![My Sleep Score Trend](/{relative_path})\n\n"
-                
-                if last_night:
-                    hours = int(last_night['duration'])
-                    minutes = int((last_night['duration'] - hours) * 60)
-                    sleep_md += f"**Last Night**: {hours}h {minutes}m (Sleep Score: {last_night['score']})  \n"
-                
-                hours_avg = int(weekly_avg_duration)
-                minutes_avg = int((weekly_avg_duration - hours_avg) * 60)
-                sleep_md += f"**Weekly Average**: {hours_avg}h {minutes_avg}m (Sleep Score: {weekly_avg_score:.0f})  \n"
-                
-                updated_content = re.sub(
-                    r'(<!-- SLEEP_STATS:START -->).*?(<!-- SLEEP_STATS:END -->)',
-                    f'\\1\n{sleep_md}\\2',
-                    readme_content,
-                    flags=re.DOTALL
-                )
-                readme_content = updated_content
-            
             # Update YTD stats
             if ytd_stats:
                 distance = f"{ytd_stats.get('distance', 0) / 1609.34:.1f} mi"
@@ -783,10 +560,9 @@ class DashboardGenerator:
 def main():
     # Initialize clients
     strava_client = StravaClient()
-    garmin_client = GarminClient()
     
     # Create dashboard generator
-    dashboard = DashboardGenerator(strava_client, garmin_client)
+    dashboard = DashboardGenerator(strava_client)
     
     # Update README
     dashboard.update_readme()

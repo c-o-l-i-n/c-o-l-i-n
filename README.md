@@ -45,17 +45,6 @@
 
 <!-- STRAVA_RACE:END -->
 
-## 💤 Sleep Stats
-
-<!-- SLEEP_STATS:START -->
-
-![My Sleep Score Trend](https://your-github-action-generated-sleep-chart-url.svg)
-
-**Last Night**: 7h 42m (Sleep Score: 85)  
-**Weekly Average**: 7h 15m (Sleep Score: 78)
-
-<!-- SLEEP_STATS:END -->
-
 ## 📈 Year to Date Stats
 
 <!-- STRAVA_YTD:START -->
