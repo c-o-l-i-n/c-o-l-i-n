@@ -346,7 +346,7 @@ class DashboardGenerator:
             return None
             
         # Decode the polyline
-        poly = polyline.decode(race['map']['polyline'])
+        poly = polyline.decode(race['map']['polyline'], geojson=True)
         
         # Calculate width and height (in pixels) to maintain aspect ratio
         width = 800
