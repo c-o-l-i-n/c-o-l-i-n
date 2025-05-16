@@ -288,7 +288,6 @@ class DashboardGenerator:
             'figure.facecolor': BACKGROUND_COLOR,
             'xtick.color': TEXT_COLOR,
             'ytick.color': TEXT_COLOR,
-            'grid.color': '#30363d',
             'figure.figsize': (10, 6),
             'font.size': 12
         })
@@ -311,11 +310,6 @@ class DashboardGenerator:
         # Plot the data
         ax.bar(weeks, distances, color=STRAVA_ORANGE, alpha=0.8, width=5)
         
-        # Add trend line
-        z = np.polyfit(range(len(distances)), distances, 1)
-        p = np.poly1d(z)
-        ax.plot(weeks, p(range(len(distances))), color=SECONDARY_COLOR, linestyle='--', linewidth=2)
-        
         # Configure the plot
         ax.set_title('Weekly Running Distance', fontsize=16, pad=20)
         ax.set_xlabel('Week', fontsize=12)
@@ -323,7 +317,7 @@ class DashboardGenerator:
         
         # Format x-axis to show dates nicely
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
-        ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=2))
+        ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
         plt.xticks(rotation=45)
         
         # Add grid for readability
@@ -349,7 +343,7 @@ class DashboardGenerator:
         poly = polyline.decode(race['map']['polyline'], geojson=True)
         
         # Calculate width and height (in pixels) to maintain aspect ratio
-        width = 800
+        width = 400
         height = width
         
         # Create a static map
@@ -452,15 +446,12 @@ class DashboardGenerator:
                 race_time = self.strava_client._format_time(latest_race['moving_time'])
                 race_pace = self.strava_client._calculate_pace(latest_race['moving_time'], latest_race['distance'])
                 
-                race_md = f'<img align="left" width="100" height="100" src="/{relative_path}">\n\n'
-                race_md += f"**Race**: {latest_race['name']}  \n"
+                race_md = f'### {latest_race["name"]}\n\n'
+                race_md += f'<img align="left" width="200" height="200" src="/{relative_path}">\n\n'
                 race_md += f"**Date**: {race_date}  \n"
                 race_md += f"**Distance**: {race_distance}  \n"
                 race_md += f"**Time**: {race_time}  \n"
                 race_md += f"**Pace**: {race_pace}  \n"
-                
-                if latest_race.get('achievement_count'):
-                    race_md += f"**Achievements**: {latest_race['achievement_count']}  \n"
                 
                 updated_content = re.sub(
                     r'(<!-- STRAVA_RACE:START -->).*?(<!-- STRAVA_RACE:END -->)',
