@@ -28,14 +28,14 @@
 ## 🏁 Latest Race Performance
 
 <!-- STRAVA_RACE:START -->
-<img align="left" width="100" height="100" src="/images/race_map.png">
+### 2025 Capital City Half Marathon
 
-**Race**: 2025 Capital City Half Marathon  
+<img align="left" width="200" height="200" src="/images/race_map.png">
+
 **Date**: April 26, 2025  
 **Distance**: 13.27 mi  
 **Time**: 01:40:36  
 **Pace**: 7:34/mi  
-**Achievements**: 10  
 <!-- STRAVA_RACE:END -->
 
 ## 📈 Year to Date Stats
