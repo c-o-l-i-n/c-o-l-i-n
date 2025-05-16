@@ -1,0 +1,10 @@
+requests
+pillow
+matplotlib
+pandas
+polyline
+folium
+staticmap
+geopy
+python-dateutil
+beautifulsoup4
