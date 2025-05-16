@@ -411,7 +411,7 @@ class DashboardGenerator:
                 prs_md += "|----------|------|------|------|\n"
                 
                 for pr in personal_records:
-                    prs_md += f"| {pr['distance']} | {pr['time']} | {pr['pace']} | {pr['date']} | {pr['location']} |\n"
+                    prs_md += f"| {pr['distance']} | {pr['time']} | {pr['pace']} | {pr['date']} |\n"
                 
                 updated_content = re.sub(
                     r'(<!-- STRAVA_PRS:START -->).*?(<!-- STRAVA_PRS:END -->)',
