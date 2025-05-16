@@ -246,7 +246,6 @@ class StravaClient:
                     'time': self._format_time(record['time']),
                     'pace': self._calculate_pace(record['time'], activity['distance']),
                     'date': parser.parse(activity['start_date_local']).strftime('%Y-%m-%d'),
-                    'location': self._get_location(activity)
                 })
         
         return formatted_records
@@ -275,19 +274,6 @@ class StravaClient:
         pace_minutes, pace_remainder = divmod(pace_seconds, 60)
         
         return f"{int(pace_minutes)}:{int(pace_remainder):02d}/mi"
-
-    def _get_location(self, activity):
-        """Extract location from activity"""
-        if activity.get('location_city') and activity.get('location_state'):
-            return f"{activity['location_city']}, {activity['location_state']}"
-        elif activity.get('location_city'):
-            return activity['location_city']
-        elif activity.get('location_state'):
-            return activity['location_state']
-        elif activity.get('location_country'):
-            return activity['location_country']
-        else:
-            return "Unknown location"
 
 
 class DashboardGenerator:
@@ -400,20 +386,9 @@ class DashboardGenerator:
         image = m.render()
         
         # Save the map
-        img_path = IMAGES_DIR / "race_map.svg"
-        
-        # Convert PIL Image to SVG (simplified approach)
-        # This is a simplified approach. In a real implementation, you might want to use a proper
-        # library for converting raster to SVG or use a SVG mapping library directly.
-        svg_content = f'''
-        <svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">
-            <image href="data:image/png;base64,{base64.b64encode(image.tobytes()).decode('utf-8')}" 
-                   width="{width}" height="{height}" />
-        </svg>
-        '''
-        
-        with open(img_path, 'w') as f:
-            f.write(svg_content)
+        img_path = IMAGES_DIR / "race_map.png"
+
+        image.save(img_path)
         
         return img_path
 
@@ -449,8 +424,8 @@ class DashboardGenerator:
             
             # Update personal records
             if personal_records:
-                prs_md = "| Distance | Time | Pace | Date | Location |\n"
-                prs_md += "|----------|------|------|------|----------|\n"
+                prs_md = "| Distance | Time | Pace | Date |\n"
+                prs_md += "|----------|------|------|------|\n"
                 
                 for pr in personal_records:
                     prs_md += f"| {pr['distance']} | {pr['time']} | {pr['pace']} | {pr['date']} | {pr['location']} |\n"
