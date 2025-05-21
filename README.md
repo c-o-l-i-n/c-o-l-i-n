@@ -19,10 +19,10 @@
 <!-- STRAVA_ACTIVITIES:START -->
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
+| May 21, 2025 | Morning Run | 3.00 mi | 25:14 | 8:23/mi | 95 ft |
 | May 17, 2025 | 5 mi @ Z3 | 5.00 mi | 01:07:12 | 13:26/mi | 112 ft |
 | May 13, 2025 | 40 min @ Z2 | 2.54 mi | 40:01 | 15:44/mi | 66 ft |
 | May 09, 2025 | Lunch Run - 2hr. @ Z2 | 7.82 mi | 02:00:02 | 15:21/mi | 138 ft |
-| May 07, 2025 | Evening Run | 5.00 mi | 43:16 | 8:38/mi | 141 ft |
 <!-- STRAVA_ACTIVITIES:END -->
 
 ## 🏁 Latest Race Performance
@@ -41,10 +41,10 @@
 ## 📈 Year to Date Stats
 
 <!-- STRAVA_YTD:START -->
-- **Distance**: 232.1 mi
-- **Elevation**: 4704 ft
-- **Time**: 38h 17m
-- **Activities**: 49
+- **Distance**: 235.1 mi
+- **Elevation**: 4799 ft
+- **Time**: 38h 43m
+- **Activities**: 50
 <!-- STRAVA_YTD:END -->
 
 ---
