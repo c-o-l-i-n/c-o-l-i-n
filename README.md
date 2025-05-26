@@ -19,6 +19,7 @@
 <!-- STRAVA_ACTIVITIES:START -->
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
+| May 26, 2025 | Lunch Run - 3 mi @ Z3 | 3.00 mi | 37:36 | 12:30/mi | 92 ft |
 | May 24, 2025 | Lunch Run - 5 mi @ Z3 | 5.00 mi | 01:05:25 | 13:05/mi | 79 ft |
 | May 22, 2025 | 2 hr. @ Z2 | 7.83 mi | 02:00:02 | 15:20/mi | 210 ft |
 | May 21, 2025 | 2 hr. @ Z2 | 7.43 mi | 01:59:50 | 16:08/mi | 269 ft |
@@ -41,10 +42,10 @@
 ## 📈 Year to Date Stats
 
 <!-- STRAVA_YTD:START -->
-- **Distance**: 255.4 mi
-- **Elevation**: 5357 ft
-- **Time**: 43h 48m
-- **Activities**: 53
+- **Distance**: 258.4 mi
+- **Elevation**: 5449 ft
+- **Time**: 44h 25m
+- **Activities**: 54
 <!-- STRAVA_YTD:END -->
 
 ---
