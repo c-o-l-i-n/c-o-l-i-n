@@ -19,33 +19,33 @@
 <!-- STRAVA_ACTIVITIES:START -->
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
+| June 01, 2025 | 2025 Columbus 10k with Molly! 🥳 | 6.30 mi | 01:16:23 | 12:07/mi | 171 ft |
 | May 30, 2025 | 30 min @ Z2 | 2.00 mi | 30:06 | 15:00/mi | 46 ft |
 | May 29, 2025 | 1 hour @ Z2 | 4.08 mi | 01:00:07 | 14:44/mi | 118 ft |
 | May 28, 2025 | 1 hour @ Z2 | 4.21 mi | 59:59 | 14:15/mi | 115 ft |
 | May 26, 2025 | Lunch Run - 3 mi @ Z3 | 3.00 mi | 37:36 | 12:30/mi | 92 ft |
-| May 24, 2025 | Lunch Run - 5 mi @ Z3 | 5.00 mi | 01:05:25 | 13:05/mi | 79 ft |
 <!-- STRAVA_ACTIVITIES:END -->
 
 ## 🏁 Latest Race Performance
 
 <!-- STRAVA_RACE:START -->
-### 2025 Capital City Half Marathon
+### 2025 Columbus 10k with Molly! 🥳
 
 <img align="left" width="200" height="200" src="/images/race_map.png">
 
-**Date**: April 26, 2025  
-**Distance**: 13.27 mi  
-**Time**: 01:40:36  
-**Pace**: 7:34/mi  
+**Date**: June 01, 2025  
+**Distance**: 6.30 mi  
+**Time**: 01:16:23  
+**Pace**: 12:07/mi  
 <!-- STRAVA_RACE:END -->
 
 ## 📈 Year to Date Stats
 
 <!-- STRAVA_YTD:START -->
-- **Distance**: 268.7 mi
-- **Elevation**: 5728 ft
-- **Time**: 46h 56m
-- **Activities**: 57
+- **Distance**: 275.0 mi
+- **Elevation**: 5898 ft
+- **Time**: 48h 12m
+- **Activities**: 58
 <!-- STRAVA_YTD:END -->
 
 ---
