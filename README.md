@@ -20,10 +20,6 @@
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
 | June 01, 2025 | 2025 Columbus 10k with Molly! 🥳 | 6.30 mi | 01:16:23 | 12:07/mi | 171 ft |
-| May 30, 2025 | 30 min @ Z2 | 2.00 mi | 30:06 | 15:00/mi | 46 ft |
-| May 29, 2025 | 1 hour @ Z2 | 4.08 mi | 01:00:07 | 14:44/mi | 118 ft |
-| May 28, 2025 | 1 hour @ Z2 | 4.21 mi | 59:59 | 14:15/mi | 115 ft |
-| May 26, 2025 | Lunch Run - 3 mi @ Z3 | 3.00 mi | 37:36 | 12:30/mi | 92 ft |
 <!-- STRAVA_ACTIVITIES:END -->
 
 ## 🏁 Latest Race Performance
