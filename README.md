@@ -19,7 +19,7 @@
 <!-- STRAVA_ACTIVITIES:START -->
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
-| June 01, 2025 | 2025 Columbus 10k with Molly! 🥳 | 6.30 mi | 01:16:23 | 12:07/mi | 171 ft |
+| June 09, 2025 | 2 miles @ Z2 | 2.00 mi | 29:59 | 14:58/mi | 46 ft |
 <!-- STRAVA_ACTIVITIES:END -->
 
 ## 🏁 Latest Race Performance
@@ -38,10 +38,10 @@
 ## 📈 Year to Date Stats
 
 <!-- STRAVA_YTD:START -->
-- **Distance**: 275.0 mi
-- **Elevation**: 5898 ft
-- **Time**: 48h 12m
-- **Activities**: 58
+- **Distance**: 277.0 mi
+- **Elevation**: 5944 ft
+- **Time**: 48h 42m
+- **Activities**: 59
 <!-- STRAVA_YTD:END -->
 
 ---
