@@ -19,6 +19,7 @@
 <!-- STRAVA_ACTIVITIES:START -->
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
+| June 13, 2025 | Evening Run | 5.01 mi | 44:04 | 8:48/mi | 390 ft |
 | June 09, 2025 | 2 miles @ Z2 | 2.00 mi | 29:59 | 14:58/mi | 46 ft |
 <!-- STRAVA_ACTIVITIES:END -->
 
@@ -38,10 +39,10 @@
 ## 📈 Year to Date Stats
 
 <!-- STRAVA_YTD:START -->
-- **Distance**: 277.0 mi
-- **Elevation**: 5944 ft
-- **Time**: 48h 42m
-- **Activities**: 59
+- **Distance**: 282.0 mi
+- **Elevation**: 6334 ft
+- **Time**: 49h 26m
+- **Activities**: 60
 <!-- STRAVA_YTD:END -->
 
 ---
