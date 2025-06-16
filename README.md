@@ -20,7 +20,6 @@
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
 | June 13, 2025 | Evening Run | 5.01 mi | 44:04 | 8:48/mi | 390 ft |
-| June 09, 2025 | 2 miles @ Z2 | 2.00 mi | 29:59 | 14:58/mi | 46 ft |
 <!-- STRAVA_ACTIVITIES:END -->
 
 ## 🏁 Latest Race Performance
