@@ -19,7 +19,6 @@
 <!-- STRAVA_ACTIVITIES:START -->
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
-| June 13, 2025 | Evening Run | 5.01 mi | 44:04 | 8:48/mi | 390 ft |
 <!-- STRAVA_ACTIVITIES:END -->
 
 ## 🏁 Latest Race Performance
