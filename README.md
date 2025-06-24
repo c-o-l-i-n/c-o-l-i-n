@@ -19,6 +19,7 @@
 <!-- STRAVA_ACTIVITIES:START -->
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
+| June 24, 2025 | Morning Run | 3.00 mi | 25:00 | 8:19/mi | 72 ft |
 <!-- STRAVA_ACTIVITIES:END -->
 
 ## 🏁 Latest Race Performance
@@ -37,10 +38,10 @@
 ## 📈 Year to Date Stats
 
 <!-- STRAVA_YTD:START -->
-- **Distance**: 282.0 mi
-- **Elevation**: 6334 ft
-- **Time**: 49h 26m
-- **Activities**: 60
+- **Distance**: 285.0 mi
+- **Elevation**: 6407 ft
+- **Time**: 49h 51m
+- **Activities**: 61
 <!-- STRAVA_YTD:END -->
 
 ---
