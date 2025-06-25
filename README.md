@@ -9,7 +9,7 @@
 <!-- STRAVA_PRS:START -->
 | Distance | Time | Pace | Date |
 |----------|------|------|------|
-| 5K | 25:18 | 8:16/mi | October 01, 2024 |
+| 5K | 39:27 | 12:35/mi | February 15, 2025 |
 | 10K | 51:28 | 8:16/mi | April 05, 2025 |
 | Half Marathon | 01:40:46 | 7:35/mi | April 26, 2025 |
 <!-- STRAVA_PRS:END -->
@@ -19,6 +19,7 @@
 <!-- STRAVA_ACTIVITIES:START -->
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
+| June 25, 2025 | Toasty | 4.00 mi | 35:53 | 8:57/mi | 131 ft |
 | June 24, 2025 | Morning Run | 3.00 mi | 25:00 | 8:19/mi | 72 ft |
 <!-- STRAVA_ACTIVITIES:END -->
 
@@ -38,10 +39,10 @@
 ## 📈 Year to Date Stats
 
 <!-- STRAVA_YTD:START -->
-- **Distance**: 285.0 mi
-- **Elevation**: 6407 ft
-- **Time**: 49h 51m
-- **Activities**: 61
+- **Distance**: 289.0 mi
+- **Elevation**: 6538 ft
+- **Time**: 50h 27m
+- **Activities**: 62
 <!-- STRAVA_YTD:END -->
 
 ---
