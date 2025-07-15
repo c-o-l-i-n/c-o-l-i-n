@@ -19,10 +19,10 @@
 <!-- STRAVA_ACTIVITIES:START -->
 | Date | Activity | Distance | Time | Pace | Elevation |
 |------|----------|----------|------|------|----------|
+| July 15, 2025 | 7 x 10s sprints | 3.53 mi | 44:06 | 12:29/mi | 69 ft |
 | July 13, 2025 | Lunch Run | 5.01 mi | 49:43 | 9:54/mi | 148 ft |
 | July 12, 2025 | Morning Run | 6.08 mi | 01:07:54 | 11:10/mi | 220 ft |
 | July 11, 2025 | Morning Run | 1.43 mi | 20:01 | 13:58/mi | 33 ft |
-| July 10, 2025 | Morning Run | 4.19 mi | 44:02 | 10:30/mi | 82 ft |
 <!-- STRAVA_ACTIVITIES:END -->
 
 ## 🏁 Latest Race Performance
@@ -41,10 +41,10 @@
 ## 📈 Year to Date Stats
 
 <!-- STRAVA_YTD:START -->
-- **Distance**: 340.5 mi
-- **Elevation**: 7804 ft
-- **Time**: 60h 47m
-- **Activities**: 73
+- **Distance**: 344.0 mi
+- **Elevation**: 7873 ft
+- **Time**: 61h 31m
+- **Activities**: 74
 <!-- STRAVA_YTD:END -->
 
 ---
