@@ -1,9 +1,9 @@
 name: Update Runner Profile README
 
 on:
-  schedule:
-    # Runs at 12:00 PM ET (16:00 UTC) daily
-    - cron: '0 16 * * *'
+  # schedule:
+  #   # Runs at 12:00 PM ET (16:00 UTC) daily
+  #   - cron: '0 16 * * *'
   workflow_dispatch: # Allows manual triggering
 
 jobs:
