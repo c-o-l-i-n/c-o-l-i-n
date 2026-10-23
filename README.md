@@ -1,6 +1,4 @@
 ```ts
-// ~/whoami
-
 const colin = {
   role: "software engineer",
   location: "columbus, oh",
