@@ -4,7 +4,7 @@ const colin = {
   location: "columbus, oh",
   tech: [
     "typescript",
-    "cloudflare workers",
+    "cloudflare",
     "t3 code"
   ],
   site: "https://colinaw.com",
