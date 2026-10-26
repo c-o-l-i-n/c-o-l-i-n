@@ -2,9 +2,11 @@
 const colin = {
   role: "software engineer",
   location: "columbus, oh",
-  harness: "t3 code",
-  languages: ["typescript", "sql"],
-  editors: ["neovim", "webstorm"],
+  tech: [
+    "typescript",
+    "cloudflare workers",
+    "t3 code"
+  ],
   site: "https://colinaw.com",
 };
 ```
